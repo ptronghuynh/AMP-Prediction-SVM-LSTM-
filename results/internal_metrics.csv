@@ -1,5 +1,4 @@
 model,test_n,accuracy,macro_precision,macro_recall,macro_f1,auc_roc,approx_false_positive,approx_false_negative,source
 SVM-combined,6000,0.97,0.97,0.97,0.97,0.9962,60,120,01_train_svm_combined.ipynb
-LSTM-combined,6000,0.95,0.95,0.95,0.95,Not printed,120,150,02_train_lstm_combined.ipynb
-BiLSTM-MHA,6000,0.97,0.97,0.97,0.97,Not printed,Not printed,Not printed,03_train_bilstm_mha.ipynb
-
+LSTM-combined,6000,0.95,0.95,0.95,0.95,not_available_for_ranking,120,150,02_train_lstm_combined.ipynb
+BiLSTM-MHA,6000,0.97,0.97,0.97,0.97,not_available_for_ranking,not_available,not_available,03_train_bilstm_mha.ipynb

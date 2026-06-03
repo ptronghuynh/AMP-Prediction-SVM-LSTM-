@@ -1,0 +1,17 @@
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+env/
+
+# Large raw inputs should be archived with Git LFS or Zenodo.
+data/raw/
+*.zip
+*.tar
+*.tar.gz
+

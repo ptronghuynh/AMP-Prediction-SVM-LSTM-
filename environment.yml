@@ -1,0 +1,17 @@
+name: amp-prediction
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - matplotlib
+  - seaborn
+  - biopython
+  - jupyterlab
+  - pip:
+      - tensorflow>=2.16
+

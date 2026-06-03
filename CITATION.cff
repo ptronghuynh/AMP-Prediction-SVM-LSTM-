@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the accompanying manuscript."
+title: "AMP Prediction with SVM, LSTM, and BiLSTM-MHA"
+authors:
+  - family-names: "Pham"
+    given-names: "Trong Huynh"
+repository-code: "https://github.com/ptronghuynh/AMP-Prediction-SVM-LSTM-"
+date-released: "2026-06-03"
+license: "MIT"
+

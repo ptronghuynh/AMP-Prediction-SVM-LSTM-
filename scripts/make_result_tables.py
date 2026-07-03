@@ -208,6 +208,13 @@ def flow_pdf(path: Path, title: str, rows: list[list[str]]) -> None:
     c.save()
 
 
+def create_if_missing(path: Path, maker, *args) -> None:
+    """Keep committed manuscript figures intact unless a figure file is absent."""
+    if path.exists():
+        return
+    maker(path, *args)
+
+
 def main() -> None:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     FIGURES_DIR.mkdir(parents=True, exist_ok=True)
@@ -348,26 +355,29 @@ def main() -> None:
         cm_fields,
     )
 
-    flow_pdf(
+    create_if_missing(
         FIGURES_DIR / "Fig1_controlled_pipeline.pdf",
+        flow_pdf,
         "Controlled AMP Prediction Pipeline",
         [["Curated sequence pools", "Negative screening", "Redundancy reduction", "Fixed manifests"], ["GPSD descriptors", "Sequence encoding", "Held-out evaluation", "Leakage audit"]],
     )
-    flow_pdf(
+    create_if_missing(
         FIGURES_DIR / "Fig2_svm_combined_architecture.pdf",
+        flow_pdf,
         "SVM-Combined Architecture",
         [["Amino-acid sequence", "Fixed-length index encoding", "126 GPSD descriptors", "Feature scaling", "RBF-kernel SVM"]],
     )
-    flow_pdf(
+    create_if_missing(
         FIGURES_DIR / "Fig3_recurrent_architectures.pdf",
+        flow_pdf,
         "Recurrent Architectures",
         [["Sequence input", "Embedding", "LSTM branch", "Concatenate GPSD", "Dense classifier"], ["Sequence input", "Embedding", "BiLSTM", "Multi-head attention", "Dense classifier"]],
     )
 
-    save_confusion_matrix(FIGURES_DIR / "Fig4_svm_confusion_matrix.png", "SVM-combined confusion matrix", [[2940, 60], [120, 2880]])
-    save_ci_plot(FIGURES_DIR / "Fig5_internal_accuracy_CI.png", "Internal held-out accuracy with Wilson 95% CI", internal_rows, 0.94, 0.98)
-    save_ci_plot(FIGURES_DIR / "Fig6_external_accuracy_CI.png", "External LSTM-combined accuracy with Wilson 95% CI", external_rows, 0.55, 1.00)
-    save_confusion_matrix(FIGURES_DIR / "Fig7_lstm_confusion_matrix.png", "LSTM-combined confusion matrix", [[2880, 120], [150, 2850]])
+    create_if_missing(FIGURES_DIR / "Fig4_svm_confusion_matrix.png", save_confusion_matrix, "SVM-combined confusion matrix", [[2940, 60], [120, 2880]])
+    create_if_missing(FIGURES_DIR / "Fig5_internal_accuracy_CI.png", save_ci_plot, "Internal held-out accuracy with Wilson 95% CI", internal_rows, 0.94, 0.98)
+    create_if_missing(FIGURES_DIR / "Fig6_external_accuracy_CI.png", save_ci_plot, "External LSTM-combined accuracy with Wilson 95% CI", external_rows, 0.55, 1.00)
+    create_if_missing(FIGURES_DIR / "Fig7_lstm_confusion_matrix.png", save_confusion_matrix, "LSTM-combined confusion matrix", [[2880, 120], [150, 2850]])
     print(f"Wrote tables to {RESULTS_DIR}")
     print(f"Wrote figures to {FIGURES_DIR}")
 

@@ -1,0 +1,4 @@
+manifest,records,unique_sequence_hashes,duplicate_hash_records,amp_records,non_amp_records
+train,6596,6596,0,3202,3394
+validation,990,990,0,495,495
+heldout_test,6000,4377,1623,3000,3000

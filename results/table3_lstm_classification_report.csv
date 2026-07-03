@@ -1,0 +1,6 @@
+class,precision,recall,f1_score,support
+Non-AMP (0),0.9505,0.9600,0.9552,3000
+AMP (1),0.9596,0.9500,0.9548,3000
+accuracy,,,0.9550,6000
+macro avg,0.9550,0.9550,0.9550,6000
+weighted avg,0.9550,0.9550,0.9550,6000

@@ -1,75 +1,74 @@
-# AMP Prediction with SVM, LSTM, and BiLSTM-MHA
+# AMP-Prediction-SVM-LSTM
 
-This repository accompanies the manuscript:
+Reproducibility package for the revised manuscript:
 
 **Antimicrobial Peptide Prediction from Microbial Protein Sequences: Evaluation of Descriptor-Based and Recurrent Neural Models**
 
-The package contains source-code notebooks, a balanced 6,000-sample held-out feature file, saved model artifacts, and result tables for AMP/non-AMP classification using:
-
-- SVM-combined: fixed-length sequence indices plus 126 GPSD descriptors.
-- LSTM-combined: two-branch sequence plus GPSD model.
-- BiLSTM-MHA: bidirectional LSTM with multi-head attention.
-
 Repository URL: https://github.com/ptronghuynh/AMP-Prediction-SVM-LSTM-
 
-## Structure
+The repository is organized to support reviewer audit of the reported AMP/non-AMP classification experiments without modifying the manuscript text. It contains the balanced 6,000-record held-out feature file, split manifests with sequence hashes, internal and external result tables, leakage-check outputs, figure files, and scripts used to regenerate the summary artifacts.
+
+## Repository layout
 
 ```text
 AMP-Prediction-SVM-LSTM/
-|-- README.md
-|-- requirements.txt
-|-- environment.yml
-|-- LICENSE
-|-- CITATION.cff
-|-- data/
-|   |-- Data_6kGoc/features.csv
-|   |-- external/
-|   `-- splits/
-|-- notebooks/
-|   |-- 01_train_svm_combined.ipynb
-|   |-- 02_train_lstm_combined.ipynb
-|   |-- 03_train_bilstm_mha.ipynb
-|   |-- 04_external_validation.ipynb
-|   |-- 05_statistical_tests.ipynb
-|   `-- external/
-|-- src/
-|-- models/
-|-- results/
-`-- figures/
+├── README.md
+├── requirements.txt
+├── LICENSE
+├── .gitignore
+├── data/
+│   ├── Data_6kGoc/features.csv
+│   ├── splits/
+│   └── README_data.md
+├── notebooks/
+├── scripts/
+├── results/
+└── figures/
 ```
 
-## Main Results
+## Main reported results
 
-Internal held-out evaluation uses 6,000 balanced samples: 3,000 AMP and 3,000 non-AMP.
+Internal held-out evaluation uses a balanced 6,000-record feature table with 3,000 AMP and 3,000 non-AMP records.
 
-| Model | Test n | Accuracy | Macro F1 | Verification note |
-|---|---:|---:|---:|---|
-| SVM-combined | 6,000 | 0.97 | 0.97 | AUC 0.9962; approximate FP 60, FN 120 |
-| LSTM-combined | 6,000 | 0.95 | 0.95 | Approximate FP 120, FN 150; AUC not used for ranking |
-| BiLSTM-MHA | 6,000 | 0.97 | 0.97 | Stronger neural baseline; AUC not used for ranking |
+| Model | Test n | Accuracy | 95% CI | Macro F1 | AUC-ROC | Note |
+|---|---:|---:|---:|---:|---:|---|
+| SVM-combined | 6,000 | 0.9700 | 0.9654-0.9740 | 0.9700 | 0.9962 | Sequence-index plus 126 GPSD descriptors |
+| LSTM-combined | 6,000 | 0.9550 | 0.9495-0.9600 | 0.9550 | Not retained | Two-branch sequence plus GPSD model |
+| BiLSTM-MHA | 6,000 | approx. 0.9700 | 0.9654-0.9740 | approx. 0.9700 | Not retained | Bidirectional recurrent model with multi-head attention |
 
-External validation of the LSTM pipeline is summarized in `results/external_validation_metrics.csv` and in the notebooks under `notebooks/external/`.
+External validation is reported for the LSTM-combined pipeline only on AMPDiscover, DDBL, EMBL, RefSeq, SSFGM, and XU.
 
-## Reproducibility Notes
+## Reproduce summary artifacts
 
-- The held-out 6,000-sample feature matrix is available at `data/Data_6kGoc/features.csv`.
-- The public repository should use Git LFS or Zenodo for very large raw GenBank/notGenBank CSV and FASTA files.
-- The current `data/splits/test_ids.csv` records the held-out evaluation ordering from `Data_6kGoc/features.csv`.
-- `data/splits/train_ids.csv` and `data/splits/validation_ids.csv` are templates until the original training split manifest is exported from the training notebooks.
-- Raw paired predictions are represented as templates in `results/raw_predictions/`. Formal McNemar, bootstrap confidence intervals, and DeLong tests should be run only after raw per-sample predictions are regenerated from the fixed split manifest.
-
-## Quick Start
+Create an environment and install the dependencies:
 
 ```bash
-conda env create -f environment.yml
-conda activate amp-prediction
-python -m pip install -r requirements.txt
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-Open the notebooks in order:
+Regenerate result tables and figures:
 
-1. `notebooks/01_train_svm_combined.ipynb`
-2. `notebooks/02_train_lstm_combined.ipynb`
-3. `notebooks/03_train_bilstm_mha.ipynb`
-4. `notebooks/04_external_validation.ipynb`
-5. `notebooks/05_statistical_tests.ipynb`
+```bash
+python scripts/make_result_tables.py
+```
+
+Regenerate split manifests and leakage summaries from the local source release, when the source release is available next to this repository:
+
+```bash
+python scripts/audit_sequence_overlap.py --build-manifests
+```
+
+Audit the committed manifests only:
+
+```bash
+python scripts/audit_sequence_overlap.py
+```
+
+## Notes for reviewers
+
+- `data/Data_6kGoc/features.csv` is the held-out feature matrix used for the internal classification-report artifacts.
+- `data/splits/*.csv` contains sequence hashes and manifest metadata, not large raw source databases. During manifest generation, exact sequence hashes already present in the held-out feature table are removed from the train/validation manifests unless `--keep-heldout-overlap` is explicitly passed.
+- The large raw GenBank/non-GenBank files and saved model binaries are not included in this minimal GitHub package because of normal GitHub size limits. They should be archived through Git LFS, Zenodo, or an institutional repository if the journal requires full binary model deposition.
+- `scripts/audit_sequence_overlap.py` reports exact SHA-256 sequence-hash overlap among committed manifests. It does not claim experimental wet-lab validation.

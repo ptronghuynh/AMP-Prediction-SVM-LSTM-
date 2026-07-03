@@ -1,9 +1,0 @@
-cff-version: 1.2.0
-message: "If you use this code or data, please cite the accompanying manuscript."
-title: "Antimicrobial Peptide Prediction from Microbial Protein Sequences: Evaluation of Descriptor-Based and Recurrent Neural Models"
-authors:
-  - family-names: "Pham"
-    given-names: "Trong Huynh"
-repository-code: "https://github.com/ptronghuynh/AMP-Prediction-SVM-LSTM-"
-date-released: "2026-06-03"
-license: "MIT"

@@ -1,8 +1,0 @@
-dataset,test_n,accuracy,auc_roc,true_positive,false_positive,false_negative,true_negative,source
-AMPDiscover,1000,0.8650,0.9202,439,74,61,426,notebooks/external/lstm_AMPDiscover.ipynb
-DDBL,1000,0.9840,0.9986,494,10,6,490,notebooks/external/lstm_DDBL.ipynb
-EMBL,1000,0.9710,0.9950,482,11,18,489,notebooks/external/lstm_EMBL.ipynb
-RefSeq,1000,0.9700,0.9928,478,8,22,492,notebooks/external/lstm_RefSeq.ipynb
-SSFGM,1000,0.8130,0.8573,383,70,117,430,notebooks/external/lstm_SSFGM.ipynb
-XU,1536,0.6211,0.6605,345,159,423,609,notebooks/external/lstm_XU.ipynb
-

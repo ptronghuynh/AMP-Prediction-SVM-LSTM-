@@ -1,0 +1,7 @@
+external_dataset,status,training_hashes,external_records,unique_overlap_hashes,note
+AMPDiscover,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.
+DDBL,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.
+EMBL,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.
+RefSeq,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.
+SSFGM,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.
+XU,NOT_ASSESSED_EXTERNAL_RAW_NOT_BUNDLED,6596,,,Raw external peptide sequences are not bundled in this minimal GitHub package; rerun with the archived external files to reproduce this audit.

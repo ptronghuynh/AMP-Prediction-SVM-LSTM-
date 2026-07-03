@@ -30,11 +30,11 @@ AMP-Prediction-SVM-LSTM/
 
 Internal held-out evaluation uses a balanced 6,000-record feature table with 3,000 AMP and 3,000 non-AMP records.
 
-| Model | Test n | Accuracy | 95% CI | Macro F1 | AUC-ROC | Note |
-|---|---:|---:|---:|---:|---:|---|
-| SVM-combined | 6,000 | 0.9700 | 0.9654-0.9740 | 0.9700 | 0.9962 | Sequence-index plus 126 GPSD descriptors |
-| LSTM-combined | 6,000 | 0.9550 | 0.9495-0.9600 | 0.9550 | NA | Two-branch sequence plus GPSD model |
-| BiLSTM-MHA | 6,000 | approx. 0.9700 | 0.9654-0.9740 | approx. 0.9700 | NA | Bidirectional recurrent model with multi-head attention |
+| Model | Test n | Accuracy | 95% CI | Macro F1 | Note |
+|---|---:|---:|---:|---:|---|
+| SVM-combined | 6,000 | 0.9700 | 0.9654-0.9740 | 0.9700 | Sequence-index plus 126 GPSD descriptors; AUC-ROC = 0.9962 |
+| LSTM-combined | 6,000 | 0.9550 | 0.9495-0.9600 | 0.9550 | Two-branch sequence plus GPSD model |
+| BiLSTM-MHA | 6,000 | approx. 0.9700 | 0.9654-0.9740 | approx. 0.9700 | Bidirectional recurrent model with multi-head attention |
 
 External validation is reported for the LSTM-combined pipeline only on AMPDiscover, DDBL, EMBL, RefSeq, SSFGM, and XU.
 

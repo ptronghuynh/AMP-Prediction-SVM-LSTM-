@@ -234,9 +234,8 @@ def main() -> None:
             "macro_precision": 0.9700,
             "macro_recall": 0.9700,
             "macro_f1": 0.9700,
-            "auc_roc": "0.9962",
             "approx_errors": 180,
-            "note": "AUC retained and reported descriptively.",
+            "note": "AUC-ROC 0.9962 is reported with the SVM classification results.",
         },
         {
             "model": "LSTM-combined",
@@ -246,7 +245,6 @@ def main() -> None:
             "macro_precision": 0.9550,
             "macro_recall": 0.9550,
             "macro_f1": 0.9550,
-            "auc_roc": "not_retained",
             "approx_errors": 270,
             "note": "Two-branch sequence plus GPSD model.",
         },
@@ -258,7 +256,6 @@ def main() -> None:
             "macro_precision": 0.9700,
             "macro_recall": 0.9700,
             "macro_f1": 0.9700,
-            "auc_roc": "not_retained",
             "approx_errors": 180,
             "note": "Approximate values from retained rounded accuracy.",
         },
@@ -276,7 +273,6 @@ def main() -> None:
                 "macro_precision": fmt(spec["macro_precision"]),
                 "macro_recall": fmt(spec["macro_recall"]),
                 "macro_f1": fmt(spec["macro_f1"]),
-                "auc_roc": spec["auc_roc"],
                 "approx_errors": str(spec["approx_errors"]),
                 "note": spec["note"],
             }
@@ -290,7 +286,6 @@ def main() -> None:
         "macro_precision",
         "macro_recall",
         "macro_f1",
-        "auc_roc",
         "approx_errors",
         "note",
     ]

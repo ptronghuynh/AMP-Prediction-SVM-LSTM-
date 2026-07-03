@@ -1,4 +1,4 @@
-model,test_n,accuracy,accuracy_ci_low,accuracy_ci_high,macro_precision,macro_recall,macro_f1,auc_roc,approx_errors,note
-SVM-combined,6000,0.9700,0.9654,0.9740,0.9700,0.9700,0.9700,0.9962,180,AUC retained and reported descriptively.
-LSTM-combined,6000,0.9550,0.9495,0.9600,0.9550,0.9550,0.9550,not_retained,270,Two-branch sequence plus GPSD model.
-BiLSTM-MHA,6000,0.9700,0.9654,0.9740,0.9700,0.9700,0.9700,not_retained,180,Approximate values from retained rounded accuracy.
+model,test_n,accuracy,accuracy_ci_low,accuracy_ci_high,macro_precision,macro_recall,macro_f1,approx_errors,note
+SVM-combined,6000,0.9700,0.9654,0.9740,0.9700,0.9700,0.9700,180,AUC-ROC 0.9962 is reported with the SVM classification results.
+LSTM-combined,6000,0.9550,0.9495,0.9600,0.9550,0.9550,0.9550,270,Two-branch sequence plus GPSD model.
+BiLSTM-MHA,6000,0.9700,0.9654,0.9740,0.9700,0.9700,0.9700,180,Approximate values from retained rounded accuracy.

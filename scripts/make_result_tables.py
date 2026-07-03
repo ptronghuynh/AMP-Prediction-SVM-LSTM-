@@ -1,4 +1,4 @@
-"""Generate manuscript result tables and figure files."""
+"""Create result tables and preserve manuscript figure files."""
 
 from __future__ import annotations
 
@@ -204,12 +204,11 @@ def flow_pdf(path: Path, title: str, rows: list[list[str]]) -> None:
                 c.line(x + box_w + gap - 8, y + box_h / 2, x + box_w + gap - 18, y + box_h / 2 - 5)
     c.setFont("Helvetica", 8)
     c.setFillColor(colors.HexColor("#4b5563"))
-    c.drawString(45, 28, "Generated from scripts/make_result_tables.py for the revised manuscript repository.")
     c.save()
 
 
 def create_if_missing(path: Path, maker, *args) -> None:
-    """Keep committed manuscript figures intact unless a figure file is absent."""
+    """Create a figure file only when it is absent."""
     if path.exists():
         return
     maker(path, *args)

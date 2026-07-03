@@ -1,4 +1,4 @@
-"""Confidence-interval utilities used by the reproducibility package."""
+"""Confidence-interval utilities for reported model metrics."""
 
 from __future__ import annotations
 
